@@ -5,6 +5,7 @@ A modern style guide for teams using Service Portal.
 ## Table of Contents
 
 1. [Single Responsibility](#single-responsibility)
+1. [Pure Functions](#pure-functions)
 
 ## Single Responsibility
 
@@ -23,5 +24,20 @@ Apply the single responsibility principle (SRP) to all functions, scripts, compo
 * Easier to read and maintain
 * Reduces bug count
 * Produces more testable code
+
+**[Back to top](#table-of-contents)**
+
+## Pure Functions
+
+Write [pure functions](https://en.wikipedia.org/wiki/Pure_function) when possible. These functions, when given the same input, will always return the same output. They produce no side effects. Pure functions are completely independent of outside state. Why use these?
+
+* Reduce bugs
+* Easy to understand
+* Easy to maintain
+* More testable
+
+```javascript
+const double = x => x * 2;
+```
 
 **[Back to top](#table-of-contents)**
