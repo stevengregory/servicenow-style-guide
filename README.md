@@ -1,6 +1,6 @@
 # Service Portal: Style Guide
 
-A modern style guide for teams using Service Portal.
+A modern & opinionated style guide for teams using Service Portal.
 
 ## Table of Contents
 
