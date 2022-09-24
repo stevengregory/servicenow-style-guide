@@ -6,6 +6,8 @@ A modern & opinionated style guide for teams using Service Portal.
 
 1. [Single Responsibility](#single-responsibility)
 1. [Pure Functions](#pure-functions)
+1. [controllerAs Syntax](#controlleras-syntax)
+1. [$onInit](#oninit)
 
 ## Single Responsibility
 
@@ -38,6 +40,54 @@ Write [pure functions](https://en.wikipedia.org/wiki/Pure_function) when possibl
 
 ```javascript
 const double = x => x * 2;
+```
+
+**[Back to top](#table-of-contents)**
+
+## controllerAs Syntax
+
+Use `controllerAs` syntax instead of `$scope` inside your client controller. Why?
+
+* it is a common best practice
+* removes scope inheritance issues
+* eliminates having to inject `$scope` as a dependency
+
+```javascript
+api.controller = function() {
+  var c = this;
+  c.isVisible = true;
+};
+```
+
+Avoid using `$scope` in a client controller unless needed.
+
+```javascript
+api.controller = function($scope) {
+  $scope.isVisible = true;
+};
+```
+
+Using `$scope` is fine when publishing and subscribing to events such as: `$emit`, `$broadcast`, or `$on`.
+
+**[Back to top](#table-of-contents)**
+
+## $onInit
+
+Use the `$onInit` method to organize initialization code for your client controller.
+
+From the AngularJS documentation:
+
+> Called on each controller after all the controllers on an element have been constructed and had their bindings initialized (and before the pre & post linking functions for the directives on this element).
+
+```javascript
+api.controller = function() {
+  var c = this;
+
+  c.$onInit = function() {
+    getTopics();
+    getWidgets();
+  };
+};
 ```
 
 **[Back to top](#table-of-contents)**
