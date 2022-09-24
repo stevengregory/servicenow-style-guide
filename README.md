@@ -10,6 +10,7 @@ A modern & opinionated style guide for teams using Service Portal.
 1. [$onInit](#oninit)
 1. [Bindable Members at Top](#bindable-members-at-top)
 1. [One-time Binding](#one-time-binding)
+1. [Linting](#linting)
 
 ## Single Responsibility
 
@@ -140,5 +141,16 @@ The syntax can easily be applied inside an ng-repeat as well:
 ```
 
 Note: Be careful using one-time bindings in areas where the data could fluctuate in the future.
+
+**[Back to top](#table-of-contents)**
+
+## Linting
+
+[ESLint](https://eslint.org/) helps you find and fix problems with your JavaScript code. Use it to lint your code. Why?
+
+* increases code quality
+* makes code more consistent
+* enforces best practices & patterns of development
+* helps catch bugs
 
 **[Back to top](#table-of-contents)**
