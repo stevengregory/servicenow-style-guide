@@ -132,7 +132,7 @@ From the AngularJS documentation:
 <div class="panel-heading">{{::options.title}}</div>
 ```
 
-The syntax can easily be applied inside an ng-repeat as well:
+The syntax can easily be applied inside an `ng-repeat` as well:
 
 ```html
 <ul>
