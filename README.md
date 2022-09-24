@@ -8,6 +8,8 @@ A modern & opinionated style guide for teams using Service Portal.
 1. [Pure Functions](#pure-functions)
 1. [controllerAs Syntax](#controlleras-syntax)
 1. [$onInit](#oninit)
+1. [Bindable Members at Top](#bindable-members-at-top)
+1. [One-time Binding](#one-time-binding)
 
 ## Single Responsibility
 
@@ -89,5 +91,54 @@ api.controller = function() {
   };
 };
 ```
+
+**[Back to top](#table-of-contents)**
+
+## Bindable Members at Top
+
+Place the bindable members at the top of the client controller in alphabetical order. Why?
+
+* Easy to read
+* Quickly identify bindings on the HTML template
+
+```javascript
+api.controller = function() {
+  var c = this;
+  c.closeSurvey = closeSurvey;
+  c.setRating = setRating;
+
+  function closeSurvey() {
+    /* */
+  }
+
+  function setRating() {
+    /* */
+  }
+};
+```
+
+**[Back to top](#table-of-contents)**
+
+## One-time Binding
+
+On the HTML template, use one-time bindings where needed to improve performance.
+
+From the AngularJS documentation:
+
+> One-time expressions will stop recalculating once they are stable, which happens after the first digest if the expression result is a non-undefined value.
+
+```html
+<div class="panel-heading">{{::options.title}}</div>
+```
+
+The syntax can easily be applied inside an ng-repeat as well:
+
+```html
+<ul>
+  <li ng-repeat="user in ::c.users"></li>
+</ul>
+```
+
+Note: Be careful using one-time bindings in areas where the data could fluctuate in the future.
 
 **[Back to top](#table-of-contents)**
