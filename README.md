@@ -51,9 +51,9 @@ const double = x => x * 2;
 
 Use `controllerAs` syntax instead of `$scope` inside your client controller. Why?
 
-* it is a common best practice
-* removes scope inheritance issues
-* eliminates having to inject `$scope` as a dependency
+* It is a common best practice
+* Removes scope inheritance issues
+* Eliminates having to inject `$scope` as a dependency
 
 ```javascript
 api.controller = function() {
@@ -140,7 +140,7 @@ The syntax can easily be applied inside an `ng-repeat` as well:
 </ul>
 ```
 
-Note: Be careful using one-time bindings in areas where the data could fluctuate in the future.
+Note: be careful using one-time bindings in areas where the data could fluctuate in the future.
 
 **[Back to top](#table-of-contents)**
 
@@ -148,9 +148,9 @@ Note: Be careful using one-time bindings in areas where the data could fluctuate
 
 [ESLint](https://eslint.org/) helps you find and fix problems with your JavaScript code. Use it to lint your code. Why?
 
-* increases code quality
-* makes code more consistent
-* enforces best practices & patterns of development
-* helps catch bugs
+* Increases code quality
+* Makes code more consistent
+* Enforces best practices & patterns of development
+* Helps catch bugs
 
 **[Back to top](#table-of-contents)**
