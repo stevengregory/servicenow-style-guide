@@ -36,9 +36,9 @@ Apply the single responsibility principle (SRP) to all functions, scripts, compo
 
 Write [pure functions](https://en.wikipedia.org/wiki/Pure_function) when possible. These functions, when given the same input, will always return the same output. They produce no side effects. Pure functions are completely independent of outside state. Why use these?
 
-* Reduce bugs
 * Easy to understand
 * Easy to maintain
+* Reduces bugs
 * More testable
 
 ```javascript
