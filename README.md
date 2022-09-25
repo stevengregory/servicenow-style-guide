@@ -131,10 +131,8 @@ Use components to construct independent and reusable bits of code. Components ca
 * optimized for component-based architecture
 
 ```javascript
-(function() {
-  'use strict';
-
-  var hamburgerMenu = {
+(() => {
+  const hamburgerMenu = {
     template: [
       '<button type="button" data-target="#nav-bar">',
       '<span class="sr-only">${Toggle nav}</span>',
