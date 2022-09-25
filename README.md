@@ -9,6 +9,7 @@ A modern & opinionated style guide for teams using Service Portal.
 1. [controllerAs Syntax](#controlleras-syntax)
 1. [$onInit](#oninit)
 1. [Bindable Members at Top](#bindable-members-at-top)
+1. [Function Declarations](#function-declarations)
 1. [Components](#components)
 1. [One-time Binding](#one-time-binding)
 1. [Linting](#linting)
@@ -117,6 +118,40 @@ api.controller = function() {
   function setRating() {
     /* */
   }
+};
+```
+
+**[Back to top](#table-of-contents)**
+
+## Function Declarations
+
+As a general rule, use function declarations over function expressions. Why?
+
+* Creates more readable code
+* Keeps bindable members at the top
+* Hides implementation details
+* No concerns using a function before it is defined
+
+```javascript
+api.controller = function() {
+  var c = this;
+  c.formatDate = formatDate;
+
+  function formatDate(date) {
+    return dataService.formatDate(date);
+  }
+};
+```
+
+Avoid using `$scope` with function expressions in your client controller.
+
+```javascript
+api.controller = function($scope) {
+  var c = this;
+
+  $scope.formatDate = function(date) {
+    return dataService.formatDate(date);
+  };
 };
 ```
 
