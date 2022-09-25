@@ -9,6 +9,7 @@ A modern & opinionated style guide for teams using Service Portal.
 1. [controllerAs Syntax](#controlleras-syntax)
 1. [$onInit](#oninit)
 1. [Bindable Members at Top](#bindable-members-at-top)
+1. [Components](#components)
 1. [One-time Binding](#one-time-binding)
 1. [Linting](#linting)
 1. [Code Format](#code-format)
@@ -117,6 +118,37 @@ api.controller = function() {
     /* */
   }
 };
+```
+
+**[Back to top](#table-of-contents)**
+
+## Components
+
+Use components to construct independent and reusable bits of code. Components can be registered with the `.component()` helper method. Why use components?
+
+* simple configuration
+* promotes modular code
+* optimized for component-based architecture
+
+```javascript
+(function() {
+  'use strict';
+
+  var hamburgerMenu = {
+    template: [
+      '<button type="button" data-target="#nav-bar">',
+      '<span class="sr-only">${Toggle nav}</span>',
+      '<span class="icon-bar"></span>',
+      '<span class="icon-bar"></span>',
+      '<span class="icon-bar"></span>',
+      '</button>'
+    ].join('')
+  };
+
+  angular
+    .module('employee-portal')
+    .component('hamburgerMenu', hamburgerMenu);
+})();
 ```
 
 **[Back to top](#table-of-contents)**
