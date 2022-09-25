@@ -143,7 +143,7 @@ api.controller = function(dataService) {
 };
 ```
 
-Avoid using `$scope` with function expressions in your client controller.
+Avoid using function expressions with `$scope` in your client controller.
 
 ```javascript
 api.controller = function($scope, dataService) {
