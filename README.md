@@ -151,6 +151,8 @@ Use components to construct independent and reusable bits of code. Components ca
 })();
 ```
 
+This code was crafted using a UI script.
+
 **[Back to top](#table-of-contents)**
 
 ## One-time Binding
