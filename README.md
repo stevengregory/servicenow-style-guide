@@ -133,7 +133,7 @@ As a general rule, use function declarations over function expressions. Why?
 * No concerns using a function before it is defined
 
 ```javascript
-api.controller = function() {
+api.controller = function(dataService) {
   var c = this;
   c.formatDate = formatDate;
 
@@ -146,7 +146,7 @@ api.controller = function() {
 Avoid using `$scope` with function expressions in your client controller.
 
 ```javascript
-api.controller = function($scope) {
+api.controller = function($scope, dataService) {
   var c = this;
 
   $scope.formatDate = function(date) {
