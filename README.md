@@ -11,6 +11,7 @@ A modern & opinionated style guide for teams using Service Portal.
 1. [Bindable Members at Top](#bindable-members-at-top)
 1. [One-time Binding](#one-time-binding)
 1. [Linting](#linting)
+1. [Code Format](#code-format)
 
 ## Single Responsibility
 
@@ -152,5 +153,25 @@ Note: be careful using one-time bindings in areas where the data could fluctuate
 * Makes code more consistent
 * Enforces best practices & patterns of development
 * Helps catch bugs
+
+**[Back to top](#table-of-contents)**
+
+## Code Format
+
+[Prettier](https://prettier.io/) is an opinionated code formatter. Use it to automate code formatting. Why?
+
+* Increases code readability
+* Makes code more consistent
+* Saves you time and energy
+* Removes style discussion in code reviews
+
+Here is a sample configuration for your codebase.
+
+```yml
+singleQuote: true
+semi: true
+tabWidth: 2
+trailingComma: "es5"
+```
 
 **[Back to top](#table-of-contents)**
