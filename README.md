@@ -12,6 +12,7 @@ A modern & opinionated style guide for teams using Service Portal.
 1. [Function Declarations](#function-declarations)
 1. [Components](#components)
 1. [One-time Binding](#one-time-binding)
+1. [Small Functions](#small-functions)
 1. [Linting](#linting)
 1. [Code Format](#code-format)
 
@@ -209,6 +210,17 @@ The syntax can easily be applied inside an `ng-repeat` as well:
 ```
 
 Note: be careful using one-time bindings in areas where the data could fluctuate in the future.
+
+**[Back to top](#table-of-contents)**
+
+## Small Functions
+
+Write small functions. Do refactor large functions to smaller ones. Why?
+
+* Creates more readable code
+* Easy to maintain
+* Promotes code reuse
+* Easy to test
 
 **[Back to top](#table-of-contents)**
 
