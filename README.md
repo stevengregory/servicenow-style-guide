@@ -162,9 +162,9 @@ api.controller = function($scope, dataService) {
 
 Use components to construct independent and reusable bits of code. Components can be registered with the `.component()` helper method. Why use components?
 
-* simple configuration
-* promotes modular code
-* optimized for component-based architecture
+* Simple configuration
+* Promotes modular code
+* Optimized for component-based architecture
 
 ```javascript
 (() => {
