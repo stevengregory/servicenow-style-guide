@@ -10,6 +10,7 @@ A modern & opinionated style guide for teams using Service Portal.
 1. [$onInit](#oninit)
 1. [Bindable Members at Top](#bindable-members-at-top)
 1. [Function Declarations](#function-declarations)
+1. [GlideQuery](#glidequery)
 1. [Components](#components)
 1. [One-time Binding](#one-time-binding)
 1. [Small Functions](#small-functions)
@@ -154,6 +155,25 @@ api.controller = function($scope, dataService) {
     return dataService.formatDate(date);
   };
 };
+```
+
+**[Back to top](#table-of-contents)**
+
+## GlideQuery
+
+Use [GlideQuery](https://docs.servicenow.com/bundle/tokyo-application-development/page/app-store/dev_portal/API_reference/GlideQuery/concept/GlideQueryGlobalAPI.html) as an interface to the Now platform. `GlideQuery` offers a modern, functional, and safer alternative to `GlideRecord`. Why?
+
+* Creates readable & expressive code
+* Simplifies queries
+* Easy to catch bugs
+
+```javascript
+function userExists(userID) {
+  return new GlideQuery('sys_user')
+    .where('user_name', userID)
+    .selectOne('user_name')
+    .isPresent();
+}
 ```
 
 **[Back to top](#table-of-contents)**
