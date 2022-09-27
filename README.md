@@ -179,7 +179,7 @@ function userExists(userID) {
 When used within a scoped app, it must be prefixed with the global scope.
 
 ```javascript
-new global.GlideQuery('sys_user');
+new global.GlideQuery('sys_user')
 ```
 
 **[Back to top](#table-of-contents)**
