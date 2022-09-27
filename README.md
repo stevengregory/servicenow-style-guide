@@ -259,7 +259,19 @@ Write small functions. Do refactor large functions to smaller ones. Why?
 * Enforces best practices & patterns of development
 * Helps catch bugs
 
-**[Back to top](#table-of-contents)**
+Do use the [curly](https://eslint.org/docs/latest/rules/curly) rule and wrap block statements in curly braces. Avoid omitting curly braces around blocks. It can lead to bugs and reduces code clarity.
+
+```javascript
+if (isDuplicate) now_GR.deleteRecord();
+```
+
+This statement can be rewritten as such:
+
+```javascript
+if (isDuplicate) {
+  now_GR.deleteRecord();
+}
+```
 
 ## Code Format
 
