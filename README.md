@@ -262,14 +262,14 @@ Write small functions. Do refactor large functions to smaller ones. Why?
 The [curly](https://eslint.org/docs/latest/rules/curly) rule is one worth having. As a best practice, avoid omitting curly braces around blocks; it reduces code clarity and can lead to bugs.
 
 ```javascript
-if (isDuplicate) now_GR.deleteRecord();
+if (isDuplicate) nowGR.deleteRecord();
 ```
 
 This statement can be rewritten as such:
 
 ```javascript
 if (isDuplicate) {
-  now_GR.deleteRecord();
+  nowGR.deleteRecord();
 }
 ```
 
