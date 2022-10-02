@@ -23,7 +23,7 @@ The [Single Responsibility Principle (SRP)](https://en.wikipedia.org/wiki/Single
 
 Every class, module, or function in a program should be focused and have one responsibility.
 
-> A class should have one and only one reason to change.
+> Each software module should have one and only one reason to change. - Robert C. Martin
 
 In gist, any given unit of code should have only one job and do it well. If the responsibility is scattered across different areas, it creates more touchpoints and increases the probability of creating bugs with future changes.
 
