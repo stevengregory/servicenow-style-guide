@@ -11,6 +11,7 @@ A modern & opinionated style guide for teams using Service Portal.
 1. [Bindable Members at Top](#bindable-members-at-top)
 1. [Function Declarations](#function-declarations)
 1. [GlideQuery](#glidequery)
+1. [Modules](#modules)
 1. [Components](#components)
 1. [One-time Binding](#one-time-binding)
 1. [Small Functions](#small-functions)
@@ -180,6 +181,27 @@ When used within a scoped app, it must be prefixed with the global scope.
 
 ```javascript
 new global.GlideQuery('sys_user')
+```
+
+**[Back to top](#table-of-contents)**
+
+## Modules
+
+Set a module only once in its own file. Why?
+
+* Separates configuration from module definition
+* Provides an identifiable place to set module configuration
+
+Do this to define a module in a UI script.
+
+```javascript
+angular.module('employee-portal', []);
+```
+
+Get instances of the module this way.
+
+```javascript
+angular.module('employee-portal');
 ```
 
 **[Back to top](#table-of-contents)**
