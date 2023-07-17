@@ -31,11 +31,11 @@ In gist, any given unit of code should have only one job and do it well. If the 
 
 Apply the single responsibility principle (SRP) to all functions, scripts, components, and classes. Why use SRP?
 
-- Makes the application cleaner
-- Creates more modular code
 - Easier to read and maintain
-- Reduces bug count
-- Produces more testable code
+- Improved flexibility
+- Creates more modular code
+- Reduces coupling
+- More testable
 
 ## Don't Repeat Yourself
 
