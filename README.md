@@ -5,6 +5,7 @@ A modern & opinionated style guide for teams using Service Portal.
 ## Table of Contents
 
 1. [Single Responsibility](#single-responsibility)
+1. [Don't Repeat Yourself](#dont-repeat-yourself)
 1. [Pure Functions](#pure-functions)
 1. [controllerAs Syntax](#controlleras-syntax)
 1. [$onInit](#oninit)
@@ -30,11 +31,27 @@ In gist, any given unit of code should have only one job and do it well. If the 
 
 Apply the single responsibility principle (SRP) to all functions, scripts, components, and classes. Why use SRP?
 
-* Makes the application cleaner
-* Creates more modular code
-* Easier to read and maintain
-* Reduces bug count
-* Produces more testable code
+- Makes the application cleaner
+- Creates more modular code
+- Easier to read and maintain
+- Reduces bug count
+- Produces more testable code
+
+## Don't Repeat Yourself
+
+The [Don't repeat yourself (DRY)](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) principle aims to reduce repetition of code which is likely to change, replacing it with abstractions that are less likely to change, or using data normalization which avoids redundancy in the first place.
+
+> Every piece of knowledge must have a single, unambiguous, authoritative representation within a system. - The Pragmatic Programmer
+
+In summary, creating duplicate code is generally considered an anti-pattern and should be avoided.
+
+Use the DRY principle broadly when developing on the platform. Why follow it?
+
+- Easy to read and understand
+- Easy to maintain
+- More reusable
+- More testable
+- Less error-prone
 
 **[Back to top](#table-of-contents)**
 
@@ -42,13 +59,13 @@ Apply the single responsibility principle (SRP) to all functions, scripts, compo
 
 Write [pure functions](https://en.wikipedia.org/wiki/Pure_function) when possible. These functions, when given the same input, will always return the same output. They produce no side effects. Pure functions are completely independent of outside state. Why use these?
 
-* Easy to understand
-* Easy to maintain
-* Reduces bugs
-* More testable
+- Easy to understand
+- Easy to maintain
+- Reduces bugs
+- More testable
 
 ```javascript
-const double = x => x * 2;
+const double = (x) => x * 2;
 ```
 
 **[Back to top](#table-of-contents)**
@@ -57,12 +74,12 @@ const double = x => x * 2;
 
 Use `controllerAs` syntax instead of `$scope` inside your client controller. Why?
 
-* It is a common best practice
-* Removes scope inheritance issues
-* Eliminates having to inject `$scope` as a dependency
+- It is a common best practice
+- Removes scope inheritance issues
+- Eliminates having to inject `$scope` as a dependency
 
 ```javascript
-api.controller = function() {
+api.controller = function () {
   var c = this;
   c.isVisible = true;
 };
@@ -71,7 +88,7 @@ api.controller = function() {
 Avoid using `$scope` in a client controller unless needed.
 
 ```javascript
-api.controller = function($scope) {
+api.controller = function ($scope) {
   $scope.isVisible = true;
 };
 ```
@@ -89,10 +106,10 @@ From the AngularJS documentation:
 > Called on each controller after all the controllers on an element have been constructed and had their bindings initialized (and before the pre & post linking functions for the directives on this element).
 
 ```javascript
-api.controller = function() {
+api.controller = function () {
   var c = this;
 
-  c.$onInit = function() {
+  c.$onInit = function () {
     getTopics();
     getWidgets();
   };
@@ -105,11 +122,11 @@ api.controller = function() {
 
 Place the bindable members at the top of the client controller in alphabetical order. Why?
 
-* Easy to read
-* Quickly identify bindings on the HTML template
+- Easy to read
+- Quickly identify bindings on the HTML template
 
 ```javascript
-api.controller = function() {
+api.controller = function () {
   var c = this;
   c.closeSurvey = closeSurvey;
   c.setRating = setRating;
@@ -130,13 +147,13 @@ api.controller = function() {
 
 As a general rule, use function declarations over function expressions. Why?
 
-* Creates more readable code
-* Keeps bindable members at the top
-* Hides implementation details
-* No concerns using a function before it is defined
+- Creates more readable code
+- Keeps bindable members at the top
+- Hides implementation details
+- No concerns using a function before it is defined
 
 ```javascript
-api.controller = function(coreService) {
+api.controller = function (coreService) {
   var c = this;
   c.formatDate = formatDate;
 
@@ -149,10 +166,10 @@ api.controller = function(coreService) {
 Avoid using function expressions with `$scope` in your client controller.
 
 ```javascript
-api.controller = function($scope, coreService) {
+api.controller = function ($scope, coreService) {
   var c = this;
 
-  $scope.formatDate = function(date) {
+  $scope.formatDate = function (date) {
     return coreService.formatDate(date);
   };
 };
@@ -164,23 +181,20 @@ api.controller = function($scope, coreService) {
 
 Use [GlideQuery](https://docs.servicenow.com/bundle/tokyo-application-development/page/app-store/dev_portal/API_reference/GlideQuery/concept/GlideQueryGlobalAPI.html) as an interface to the Now platform. `GlideQuery` offers a modern, functional, and safer alternative to `GlideRecord`. Why?
 
-* Creates readable & expressive code
-* Simplifies queries
-* Easy to catch bugs
+- Creates readable & expressive code
+- Simplifies queries
+- Easy to catch bugs
 
 ```javascript
 function userExists(userID) {
-  return new GlideQuery('sys_user')
-    .where('user_name', userID)
-    .selectOne('user_name')
-    .isPresent();
+  return new GlideQuery('sys_user').where('user_name', userID).selectOne('user_name').isPresent();
 }
 ```
 
 When used within a scoped app, it must be prefixed with the global scope.
 
 ```javascript
-new global.GlideQuery('sys_user')
+new global.GlideQuery('sys_user');
 ```
 
 **[Back to top](#table-of-contents)**
@@ -189,8 +203,8 @@ new global.GlideQuery('sys_user')
 
 Set a module only once in its own file. Why?
 
-* Separates configuration from module definition
-* Provides an identifiable place to set module configuration
+- Separates configuration from module definition
+- Provides an identifiable place to set module configuration
 
 Do this to define a module in a UI script.
 
@@ -210,9 +224,9 @@ angular.module('employee-portal');
 
 Use components to construct independent and reusable bits of code. Components can be registered with the `.component()` helper method. Why use components?
 
-* Simple configuration
-* Promotes modular code
-* Optimized for component-based architecture
+- Simple configuration
+- Promotes modular code
+- Optimized for component-based architecture
 
 ```javascript
 (() => {
@@ -223,13 +237,11 @@ Use components to construct independent and reusable bits of code. Components ca
       '<span class="icon-bar"></span>',
       '<span class="icon-bar"></span>',
       '<span class="icon-bar"></span>',
-      '</button>'
-    ].join('')
+      '</button>',
+    ].join(''),
   };
 
-  angular
-    .module('employee-portal')
-    .component('hamburgerMenu', hamburgerMenu);
+  angular.module('employee-portal').component('hamburgerMenu', hamburgerMenu);
 })();
 ```
 
@@ -265,10 +277,10 @@ Note: be careful using one-time bindings in areas where the data could fluctuate
 
 Write small functions. Do refactor large functions to smaller ones. Why?
 
-* Creates more readable code
-* Easy to maintain
-* Promotes code reuse
-* Easy to test
+- Creates more readable code
+- Easy to maintain
+- Promotes code reuse
+- Easy to test
 
 **[Back to top](#table-of-contents)**
 
@@ -276,10 +288,10 @@ Write small functions. Do refactor large functions to smaller ones. Why?
 
 [ESLint](https://eslint.org/) helps you find and fix problems with your JavaScript code. Use it to lint your code. Why?
 
-* Increases code quality
-* Makes code more consistent
-* Enforces best practices & patterns of development
-* Helps catch bugs
+- Increases code quality
+- Makes code more consistent
+- Enforces best practices & patterns of development
+- Helps catch bugs
 
 The [curly](https://eslint.org/docs/latest/rules/curly) rule is one worth having. As a best practice, avoid omitting curly braces around blocks; it reduces code clarity and can lead to bugs.
 
@@ -299,10 +311,10 @@ if (isDuplicate) {
 
 [Prettier](https://prettier.io/) is an opinionated code formatter. Use it to automate code formatting. Why?
 
-* Increases code readability
-* Makes code more consistent
-* Saves you time and energy
-* Removes style discussion in code reviews
+- Increases code readability
+- Makes code more consistent
+- Saves you time and energy
+- Removes style discussion in code reviews
 
 Here is a sample configuration for your codebase.
 
@@ -310,7 +322,7 @@ Here is a sample configuration for your codebase.
 singleQuote: true
 semi: true
 tabWidth: 2
-trailingComma: "es5"
+trailingComma: 'es5'
 ```
 
 **[Back to top](#table-of-contents)**
