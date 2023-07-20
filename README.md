@@ -1,6 +1,6 @@
 # Service Portal: Style Guide
 
-A modern & opinionated style guide for teams using Service Portal. The focus is on Service Portal, but the principles & patterns within can be applied broadly across the ServiceNow ecosystem. And is up-to-date with the latest JavaScript ECMAScript standard available on the platform.
+A modern and opinionated style guide for teams using Service Portal. The focus is on Service Portal, but the principles and patterns within can be applied broadly across the ServiceNow ecosystem. The style guide is up-to-date with the latest JavaScript ECMAScript standard available on the platform.
 
 ## Table of Contents
 
