@@ -32,8 +32,8 @@ In gist, any given unit of code should have only one job and do it well. If the 
 
 Apply the single responsibility principle (SRP) to all functions, scripts, components, and classes. Why use SRP?
 
-- Easier to read and maintain
-- Improved flexibility
+- Creates more readable code
+- Improves maintainability
 - Creates more modular code
 - Reduces coupling
 - More testable
@@ -335,7 +335,7 @@ trailingComma: 'es5'
 - Decreases code readability
 - Hurts maintainability
 - Makes it harder to find & fix bugs
-- Negative impact on performance
+- Negatively impacts performance
 
 First & foremost, all of your code should be stored in version control. So instead of commenting out code for potential future use, simply remove it. Look to the version history for reference.
 
