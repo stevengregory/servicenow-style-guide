@@ -16,9 +16,9 @@ A modern & opinionated style guide for teams using Service Portal.
 1. [Components](#components)
 1. [One-time Binding](#one-time-binding)
 1. [Small Functions](#small-functions)
-1. [Dead Code](#dead-code)
 1. [Linting](#linting)
 1. [Code Format](#code-format)
+1. [Dead Code](#dead-code)
 
 ## Single Responsibility
 
