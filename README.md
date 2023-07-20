@@ -1,6 +1,6 @@
 # Service Portal: Style Guide
 
-A modern & opinionated style guide for teams using Service Portal.
+A modern & opinionated style guide for teams using Service Portal. The focus is on Service Portal, but the principles & patterns within can be applied broadly across the ServiceNow ecosystem. And is up-to-date with the latest JavaScript ECMAScript standard available on the platform.
 
 ## Table of Contents
 
@@ -40,7 +40,7 @@ Apply the single responsibility principle (SRP) to all functions, scripts, compo
 
 ## Don't Repeat Yourself
 
-The [Don't repeat yourself (DRY)](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) principle aims to reduce repetition of code which is likely to change, replacing it with abstractions that are less likely to change, or using data normalization which avoids redundancy in the first place.
+The [Don't Repeat Yourself (DRY)](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) principle aims to reduce repetition of code which is likely to change, replacing it with abstractions that are less likely to change, or using data normalization which avoids redundancy in the first place.
 
 > Every piece of knowledge must have a single, unambiguous, authoritative representation within a system. - The Pragmatic Programmer
 
@@ -299,7 +299,7 @@ Write small functions. Do refactor large functions to smaller ones. Why?
 - Enforces best practices & patterns of development
 - Helps catch bugs
 
-The [curly](https://eslint.org/docs/latest/rules/curly) rule is one worth having. As a best practice, avoid omitting curly braces around blocks; it reduces code clarity and can lead to bugs.
+The [curly](https://eslint.org/docs/latest/rules/curly) rule is one worth having. As a best practice: avoid omitting curly braces around blocks, it reduces code clarity and can lead to bugs.
 
 ```javascript
 if (isDuplicate) nowGR.deleteRecord();
@@ -335,7 +335,7 @@ trailingComma: 'es5'
 
 ## Dead Code
 
-[Dead code](https://en.wikipedia.org/wiki/Dead_code) is code that is no longer used by your application. It comes in different forms, but most noticeably in commented-out code. Avoid leaving dead code in your codebase. Why?
+[Dead code](https://en.wikipedia.org/wiki/Dead_code) is code that is no longer used by your application. It comes in different forms, but most apparent in commented-out code. Avoid leaving dead code in your codebase. Why?
 
 - Decreases code readability
 - Hurts maintainability
