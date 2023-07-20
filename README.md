@@ -16,6 +16,7 @@ A modern & opinionated style guide for teams using Service Portal.
 1. [Components](#components)
 1. [One-time Binding](#one-time-binding)
 1. [Small Functions](#small-functions)
+1. [Dead Code](#dead-code)
 1. [Linting](#linting)
 1. [Code Format](#code-format)
 
@@ -324,5 +325,18 @@ semi: true
 tabWidth: 2
 trailingComma: 'es5'
 ```
+
+**[Back to top](#table-of-contents)**
+
+## Dead Code
+
+[Dead code](https://en.wikipedia.org/wiki/Dead_code) is code that is no longer used by your application. It comes in different forms, but most noticeably in commented-out code. Avoid leaving dead code in your codebase. Why?
+
+- Decreases code readability
+- Hurts maintainability
+- Makes it harder to find & fix bugs
+- Negative impact on performance
+
+First & foremost, all of your code should be stored in version control. So instead of commenting out code for potential future use, simply remove it. Look to the version history for reference.
 
 **[Back to top](#table-of-contents)**
