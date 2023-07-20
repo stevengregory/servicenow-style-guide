@@ -335,12 +335,12 @@ trailingComma: 'es5'
 
 ## Dead Code
 
-[Dead code](https://en.wikipedia.org/wiki/Dead_code) is code that is no longer used by your application. It comes in different forms, but most apparent in commented-out code. Avoid leaving dead code in your codebase. Why?
+[Dead code](https://en.wikipedia.org/wiki/Dead_code) is code that is no longer used by your application. It can come in different forms, but most apparent in commented-out code. Leaving dead code in your codebase can have a number of negative consequences, including:
 
-- Decreases code readability
+- Decreased code readability
 - Hurts maintainability
 - Makes it harder to find & fix bugs
-- Negatively impacts performance
+- Negatively impacting performance
 
 First & foremost, all of your code should be stored in version control. So instead of commenting out code for potential future use, simply remove it. Look to the version history for reference.
 
