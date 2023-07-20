@@ -339,4 +339,11 @@ trailingComma: 'es5'
 
 First & foremost, all of your code should be stored in version control. So instead of commenting out code for potential future use, simply remove it. Look to the version history for reference.
 
+To help eliminate unused variables, functions, and function parameters, add the [no-unused-vars](https://eslint.org/docs/latest/rules/no-unused-vars) rule to your ESLint configuration file.
+
+```yml
+rules:
+  no-unused-vars: error
+```
+
 **[Back to top](#table-of-contents)**
