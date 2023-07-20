@@ -188,7 +188,10 @@ Use [GlideQuery](https://docs.servicenow.com/bundle/tokyo-application-developmen
 
 ```javascript
 function userExists(userID) {
-  return new GlideQuery('sys_user').where('user_name', userID).selectOne('user_name').isPresent();
+  return new GlideQuery('sys_user')
+    .where('user_name', userID)
+    .selectOne('user_name')
+    .isPresent();
 }
 ```
 
@@ -238,11 +241,13 @@ Use components to construct independent and reusable bits of code. Components ca
       '<span class="icon-bar"></span>',
       '<span class="icon-bar"></span>',
       '<span class="icon-bar"></span>',
-      '</button>',
-    ].join(''),
+      '</button>'
+    ].join('')
   };
 
-  angular.module('employee-portal').component('hamburgerMenu', hamburgerMenu);
+  angular
+    .module('employee-portal')
+    .component('hamburgerMenu', hamburgerMenu);
 })();
 ```
 
