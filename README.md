@@ -313,6 +313,8 @@ if (isDuplicate) {
 }
 ```
 
+**[Back to top](#table-of-contents)**
+
 ## Code Format
 
 [Prettier](https://prettier.io/) is an opinionated code formatter. Use it to automate code formatting. Why?
