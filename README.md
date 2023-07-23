@@ -19,6 +19,7 @@ A modern and opinionated style guide for teams using Service Portal. The focus i
 1. [Linting](#linting)
 1. [Code Format](#code-format)
 1. [Dead Code](#dead-code)
+1. [God Object](#god-object)
 
 ## Single Responsibility
 
@@ -352,5 +353,24 @@ To help eliminate unused variables, functions, and function parameters, add the 
 rules:
   no-unused-vars: error
 ```
+
+**[Back to top](#table-of-contents)**
+
+## God Object
+
+The [God Object](https://en.wikipedia.org/wiki/God_object) is an anti-pattern in object-oriented programming. It refers to an object that knows too much or does too much. The God Object is usually a class or module that has grown to such proportions that it becomes unmanageable and difficult to maintain.
+
+> A God object is an object that controls too many other objects in the system and has grown beyond all logic to become The Class That Does Everything. - Robert C. Martin
+
+In essence, a God Object is a violation of the [Single Responsibility Principle (SRP)](#single-responsibility). It's an object that has taken on responsibilities that should be delegated to other, more specialized objects.
+
+Avoid creating God Objects in your code. Why?
+
+- Improves maintainability
+- Reduces complexity
+- Enhances modularity
+- Increases testability
+
+When you find a God Object in your code, consider refactoring it into smaller, more focused classes or modules. This process is often referred to as "breaking down a God Object".
 
 **[Back to top](#table-of-contents)**
