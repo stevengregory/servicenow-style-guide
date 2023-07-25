@@ -9,16 +9,16 @@ While the guide's focus is on Service Portal, the principles and patterns within
 1. [Single Responsibility](#single-responsibility)
 1. [Don't Repeat Yourself](#dont-repeat-yourself)
 1. [Pure Functions](#pure-functions)
+1. [Small Functions](#small-functions)
 1. [Revealing Module Pattern](#revealing-module-pattern)
-1. [controllerAs Syntax](#controlleras-syntax)
 1. [$onInit](#oninit)
-1. [Bindable Members at Top](#bindable-members-at-top)
+1. [controllerAs Syntax](#controlleras-syntax)
 1. [Function Declarations](#function-declarations)
-1. [GlideQuery](#glidequery)
+1. [Bindable Members at Top](#bindable-members-at-top)
 1. [Modules](#modules)
 1. [Components](#components)
 1. [One-time Binding](#one-time-binding)
-1. [Small Functions](#small-functions)
+1. [GlideQuery](#glidequery)
 1. [Linting](#linting)
 1. [Code Format](#code-format)
 1. [Dead Code](#dead-code)
@@ -41,6 +41,8 @@ Apply the single responsibility principle (SRP) to all functions, scripts, compo
 - Creates more modular code
 - Reduces coupling
 - More testable
+
+**[Back to top](#table-of-contents)**
 
 ## Don't Repeat Yourself
 
@@ -72,6 +74,17 @@ Write [pure functions](https://en.wikipedia.org/wiki/Pure_function) when possibl
 ```javascript
 const double = (x) => x * 2;
 ```
+
+**[Back to top](#table-of-contents)**
+
+## Small Functions
+
+Write small functions. Do refactor large functions to smaller ones. Why?
+
+- Creates more readable code
+- Easy to maintain
+- Promotes code reuse
+- Easy to test
 
 **[Back to top](#table-of-contents)**
 
@@ -109,6 +122,27 @@ In this script include, the `addUser` & `getApps` methods are exposed and made p
 
 **[Back to top](#table-of-contents)**
 
+## $onInit
+
+Use the `$onInit` method to organize initialization code for your client controller.
+
+From the AngularJS documentation:
+
+> Called on each controller after all the controllers on an element have been constructed and had their bindings initialized (and before the pre & post linking functions for the directives on this element).
+
+```javascript
+api.controller = function () {
+  var c = this;
+
+  c.$onInit = function () {
+    getTopics();
+    getWidgets();
+  };
+};
+```
+
+**[Back to top](#table-of-contents)**
+
 ## controllerAs Syntax
 
 Use `controllerAs` syntax instead of `$scope` inside your client controller. Why?
@@ -133,52 +167,6 @@ api.controller = function ($scope) {
 ```
 
 Using `$scope` is fine when publishing and subscribing to events such as: `$emit`, `$broadcast`, or `$on`.
-
-**[Back to top](#table-of-contents)**
-
-## $onInit
-
-Use the `$onInit` method to organize initialization code for your client controller.
-
-From the AngularJS documentation:
-
-> Called on each controller after all the controllers on an element have been constructed and had their bindings initialized (and before the pre & post linking functions for the directives on this element).
-
-```javascript
-api.controller = function () {
-  var c = this;
-
-  c.$onInit = function () {
-    getTopics();
-    getWidgets();
-  };
-};
-```
-
-**[Back to top](#table-of-contents)**
-
-## Bindable Members at Top
-
-Place the bindable members at the top of the client controller in alphabetical order. Why?
-
-- Easy to read
-- Quickly identify bindings on the HTML template
-
-```javascript
-api.controller = function () {
-  var c = this;
-  c.closeSurvey = closeSurvey;
-  c.setRating = setRating;
-
-  function closeSurvey() {
-    /* */
-  }
-
-  function setRating() {
-    /* */
-  }
-};
-```
 
 **[Back to top](#table-of-contents)**
 
@@ -216,27 +204,27 @@ api.controller = function ($scope, coreService) {
 
 **[Back to top](#table-of-contents)**
 
-## GlideQuery
+## Bindable Members at Top
 
-Use [GlideQuery](https://docs.servicenow.com/bundle/tokyo-application-development/page/app-store/dev_portal/API_reference/GlideQuery/concept/GlideQueryGlobalAPI.html) as an interface to the Now platform. `GlideQuery` offers a modern, functional, and safer alternative to `GlideRecord`. Why?
+Place the bindable members at the top of the client controller in alphabetical order. Why?
 
-- Creates readable & expressive code
-- Simplifies queries
-- Easy to catch bugs
-
-```javascript
-function userExists(userID) {
-  return new GlideQuery('sys_user')
-    .where('user_name', userID)
-    .selectOne('user_name')
-    .isPresent();
-}
-```
-
-When used within a scoped app, it must be prefixed with the global scope.
+- Easy to read
+- Quickly identify bindings on the HTML template
 
 ```javascript
-new global.GlideQuery('sys_user');
+api.controller = function () {
+  var c = this;
+  c.closeSurvey = closeSurvey;
+  c.setRating = setRating;
+
+  function closeSurvey() {
+    /* */
+  }
+
+  function setRating() {
+    /* */
+  }
+};
 ```
 
 **[Back to top](#table-of-contents)**
@@ -317,14 +305,28 @@ Note: be careful using one-time bindings in areas where the data could fluctuate
 
 **[Back to top](#table-of-contents)**
 
-## Small Functions
+## GlideQuery
 
-Write small functions. Do refactor large functions to smaller ones. Why?
+Use [GlideQuery](https://docs.servicenow.com/bundle/tokyo-application-development/page/app-store/dev_portal/API_reference/GlideQuery/concept/GlideQueryGlobalAPI.html) as an interface to the Now platform. `GlideQuery` offers a modern, functional, and safer alternative to `GlideRecord`. Why?
 
-- Creates more readable code
-- Easy to maintain
-- Promotes code reuse
-- Easy to test
+- Creates readable & expressive code
+- Simplifies queries
+- Easy to catch bugs
+
+```javascript
+function userExists(userID) {
+  return new GlideQuery('sys_user')
+    .where('user_name', userID)
+    .selectOne('user_name')
+    .isPresent();
+}
+```
+
+When used within a scoped app, it must be prefixed with the global scope.
+
+```javascript
+new global.GlideQuery('sys_user');
+```
 
 **[Back to top](#table-of-contents)**
 
