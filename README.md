@@ -84,7 +84,7 @@ The Revealing Module Pattern in JavaScript is a design pattern that encapsulates
 - Enhances code organization
 - Improves maintainability
 
-```JavaScript
+```javascript
 var AppCenterUtils = (function () {
   function addUser() {
     /* */
