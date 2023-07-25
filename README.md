@@ -10,14 +10,14 @@ While the guide's focus is on Service Portal, the principles and patterns within
 1. [Don't Repeat Yourself](#dont-repeat-yourself)
 1. [Pure Functions](#pure-functions)
 1. [Small Functions](#small-functions)
-1. [Revealing Module Pattern](#revealing-module-pattern)
 1. [$onInit](#oninit)
 1. [controllerAs Syntax](#controlleras-syntax)
 1. [Function Declarations](#function-declarations)
 1. [Bindable Members at Top](#bindable-members-at-top)
+1. [One-time Binding](#one-time-binding)
 1. [Modules](#modules)
 1. [Components](#components)
-1. [One-time Binding](#one-time-binding)
+1. [Revealing Module Pattern](#revealing-module-pattern)
 1. [GlideQuery](#glidequery)
 1. [Linting](#linting)
 1. [Code Format](#code-format)
@@ -85,40 +85,6 @@ Write small functions. Do refactor large functions to smaller ones. Why?
 - Easy to maintain
 - Promotes code reuse
 - Easy to test
-
-**[Back to top](#table-of-contents)**
-
-## Revealing Module Pattern
-
-The Revealing Module Pattern in JavaScript is a design pattern that encapsulates private variables and methods within a module, exposing only desired methods and properties. With this pattern, only a public API is returned, keeping everything else within the closure private. Use this pattern in your scripts. Why?
-
-- Creates encapsulation
-- Improves code clarity & readability
-- Enhances code organization
-- Improves maintainability
-
-```javascript
-var AppCenterUtils = (function () {
-  function addUser() {
-    /* */
-  }
-
-  function doTransform() {
-    /* */
-  }
-
-  function getApps() {
-    /* */
-  }
-
-  return {
-    addUser: addUser,
-    getApps: getApps,
-  };
-})();
-```
-
-In this script include, the `addUser` & `getApps` methods are exposed and made public, providing a clear and controlled API. The `doTransform` method, however, is kept private within the module, demonstrating the encapsulation this pattern provides.
 
 **[Back to top](#table-of-contents)**
 
@@ -229,6 +195,30 @@ api.controller = function () {
 
 **[Back to top](#table-of-contents)**
 
+## One-time Binding
+
+On the HTML template, use one-time bindings where needed to improve performance.
+
+From the AngularJS documentation:
+
+> One-time expressions will stop recalculating once they are stable, which happens after the first digest if the expression result is a non-undefined value.
+
+```html
+<div class="panel-heading">{{::options.title}}</div>
+```
+
+The syntax can easily be applied inside an `ng-repeat` as well:
+
+```html
+<ul>
+  <li ng-repeat="user in ::c.users"></li>
+</ul>
+```
+
+Note: be careful using one-time bindings in areas where the data could fluctuate in the future.
+
+**[Back to top](#table-of-contents)**
+
 ## Modules
 
 Set a module only once in its own file. Why?
@@ -281,27 +271,37 @@ This code was crafted using a UI script.
 
 **[Back to top](#table-of-contents)**
 
-## One-time Binding
+## Revealing Module Pattern
 
-On the HTML template, use one-time bindings where needed to improve performance.
+The Revealing Module Pattern in JavaScript is a design pattern that encapsulates private variables and methods within a module, exposing only desired methods and properties. With this pattern, only a public API is returned, keeping everything else within the closure private. Use this pattern in your scripts. Why?
 
-From the AngularJS documentation:
+- Creates encapsulation
+- Improves code clarity & readability
+- Enhances code organization
+- Improves maintainability
 
-> One-time expressions will stop recalculating once they are stable, which happens after the first digest if the expression result is a non-undefined value.
+```javascript
+var AppCenterUtils = (function () {
+  function addUser() {
+    /* */
+  }
 
-```html
-<div class="panel-heading">{{::options.title}}</div>
+  function doTransform() {
+    /* */
+  }
+
+  function getApps() {
+    /* */
+  }
+
+  return {
+    addUser: addUser,
+    getApps: getApps,
+  };
+})();
 ```
 
-The syntax can easily be applied inside an `ng-repeat` as well:
-
-```html
-<ul>
-  <li ng-repeat="user in ::c.users"></li>
-</ul>
-```
-
-Note: be careful using one-time bindings in areas where the data could fluctuate in the future.
+In this script include, the `addUser` & `getApps` methods are exposed and made public, providing a clear and controlled API. The `doTransform` method, however, is kept private within the module, demonstrating the encapsulation this pattern provides.
 
 **[Back to top](#table-of-contents)**
 
