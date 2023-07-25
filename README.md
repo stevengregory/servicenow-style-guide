@@ -401,12 +401,12 @@ The [God Object](https://en.wikipedia.org/wiki/God_object) is an anti-pattern in
 
 In essence, a God Object is a violation of the [Single Responsibility Principle (SRP)](#single-responsibility). It's an object that has taken on responsibilities that should be delegated to other, more specialized objects.
 
-Avoid creating God Objects in your code. Why?
+Avoid creating God Objects in your code. Why and what is the cost?
 
-- Improves maintainability
-- Reduces complexity
-- Enhances modularity
-- Increases testability
+- Tight coupling
+- Difficult to maintain
+- Decreased code readability
+- Harder to test
 
 When you find a God Object in your code, consider refactoring it into smaller, more focused units of abstraction. This process is often referred to as "breaking down a God Object".
 
