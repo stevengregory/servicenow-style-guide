@@ -9,6 +9,7 @@ While the guide's focus is on Service Portal, the principles and patterns within
 1. [Single Responsibility](#single-responsibility)
 1. [Don't Repeat Yourself](#dont-repeat-yourself)
 1. [Pure Functions](#pure-functions)
+1. [Revealing Module Pattern](#revealing-module-pattern)
 1. [controllerAs Syntax](#controlleras-syntax)
 1. [$onInit](#oninit)
 1. [Bindable Members at Top](#bindable-members-at-top)
@@ -71,6 +72,40 @@ Write [pure functions](https://en.wikipedia.org/wiki/Pure_function) when possibl
 ```javascript
 const double = (x) => x * 2;
 ```
+
+**[Back to top](#table-of-contents)**
+
+## Revealing Module Pattern
+
+The Revealing Module Pattern in JavaScript is a design pattern that encapsulates private variables and methods within a module, exposing only desired methods and properties. With this pattern, only a public API is returned, keeping everything else within the closure private. Use this pattern in your scripts. Why?
+
+- Creates encapsulation
+- Improves code clarity & readability
+- Enhances code organization
+- Improves maintainability
+
+```JavaScript
+var AppCenterUtils = (function () {
+  function addUser() {
+    /* */
+  }
+
+  function doTransform() {
+    /* */
+  }
+
+  function getApps() {
+    /* */
+  }
+
+  return {
+    addUser: addUser,
+    getApps: getApps,
+  };
+})();
+```
+
+In this script include, the `addUser` & `getApps` methods are exposed and made public, providing a clear and controlled API. The `doTransform` method, however, is kept private within the module, demonstrating the encapsulation this pattern provides.
 
 **[Back to top](#table-of-contents)**
 
