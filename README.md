@@ -296,7 +296,7 @@ var AppCenterUtils = (function () {
 
   return {
     addUser: addUser,
-    getApps: getApps,
+    getApps: getApps
   };
 })();
 ```
