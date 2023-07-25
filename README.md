@@ -373,6 +373,6 @@ Avoid creating God Objects in your code. Why?
 - Enhances modularity
 - Increases testability
 
-When you find a God Object in your code, consider refactoring it into smaller, more focused classes or modules. This process is often referred to as "breaking down a God Object".
+When you find a God Object in your code, consider refactoring it into smaller, more focused units of abstraction. This process is often referred to as "breaking down a God Object".
 
 **[Back to top](#table-of-contents)**
