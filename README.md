@@ -4,24 +4,35 @@ A modern and opinionated style guide designed for teams working with ServiceNow.
 
 ## Table of Contents
 
-1. [Single Responsibility](#single-responsibility)
-1. [Don't Repeat Yourself](#dont-repeat-yourself)
-1. [Pure Functions](#pure-functions)
-1. [Small Functions](#small-functions)
-1. [$onInit](#oninit)
-1. [controllerAs Syntax](#controlleras-syntax)
-1. [Function Declarations](#function-declarations)
-1. [Bindable Members at Top](#bindable-members-at-top)
-1. [One-time Binding](#one-time-binding)
-1. [Modules](#modules)
-1. [Components](#components)
-1. [Revealing Module Pattern](#revealing-module-pattern)
-1. [GlideQuery](#glidequery)
-1. [Unit Testing](#unit-testing)
-1. [Linting](#linting)
-1. [Code Format](#code-format)
-1. [Dead Code](#dead-code)
-1. [God Object](#god-object)
+### General Principles
+
+- [Single Responsibility](#single-responsibility)
+- [Don't Repeat Yourself](#dont-repeat-yourself)
+- [Pure Functions](#pure-functions)
+- [Small Functions](#small-functions)
+- [Dead Code](#dead-code)
+- [God Object](#god-object)
+
+### AngularJS Best Practices
+
+- [$onInit](#oninit)
+- [controllerAs Syntax](#controlleras-syntax)
+- [Function Declarations](#function-declarations)
+- [Bindable Members at Top](#bindable-members-at-top)
+- [One-time Binding](#one-time-binding)
+- [Modules](#modules)
+- [Components](#components)
+
+### Scripting
+
+- [GlideQuery](#glidequery)
+- [Revealing Module Pattern](#revealing-module-pattern)
+
+### Testing and Quality
+
+- [Unit Testing](#unit-testing)
+- [Linting](#linting)
+- [Code Format](#code-format)
 
 ## Single Responsibility
 
