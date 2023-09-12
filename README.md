@@ -1,8 +1,6 @@
-# Service Portal: Style Guide
+# ServiceNow: Style Guide
 
-A modern and opinionated style guide, this resource is designed for teams using Service Portal. It emphasizes writing code that is clean, efficient, maintainable, and promotes best practices.
-
-While the guide's focus is on Service Portal, the principles and patterns within it are universal and can be broadly applied across the ServiceNow ecosystem. Additionally, this guide is up-to-date with the latest JavaScript ECMAScript standard (available on the platform).
+A modern and opinionated style guide designed for teams working with ServiceNow. This guide focuses on promoting clean, efficient, and maintainable code that adheres to best practices.
 
 ## Table of Contents
 
