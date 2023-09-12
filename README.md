@@ -17,6 +17,7 @@ A modern and opinionated style guide designed for teams working with ServiceNow.
 1. [Components](#components)
 1. [Revealing Module Pattern](#revealing-module-pattern)
 1. [GlideQuery](#glidequery)
+1. [Unit Testing](#unit-testing)
 1. [Linting](#linting)
 1. [Code Format](#code-format)
 1. [Dead Code](#dead-code)
@@ -324,6 +325,34 @@ When used within a scoped app, it must be prefixed with the global scope.
 
 ```javascript
 new global.GlideQuery('sys_user');
+```
+
+**[Back to top](#table-of-contents)**
+
+## Unit Testing
+
+Unit testing is essential for early issue detection, cost-saving, and efficient development. ServiceNow utilizes [Jasmine](https://jasmine.github.io/), a behavior-driven framework for JavaScript testing. Why write unit tests?
+
+- Ensures code reliability
+- Facilitates safe refactoring
+- Simplifies debugging
+- Accelerates development
+
+A simple function to test:
+
+```javascript
+const add = (a, b) => a + b;
+```
+
+The corresponding Jasmine unit test:
+
+```javascript
+describe('addition', function () {
+  it('should add two numbers correctly', function () {
+    const result = add(5, 5);
+    expect(result).toBe(10);
+  });
+});
 ```
 
 **[Back to top](#table-of-contents)**
