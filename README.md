@@ -29,7 +29,7 @@ A modern and opinionated style guide designed for ServiceNow development teams. 
 - [Bindable Members at Top](#bindable-members-at-top)
 - [One-time Binding](#one-time-binding)
 - [Modules](#modules)
-- [Service Portal Components](#service-portal-components)
+- [AngularJS Components](#angularjs-components)
 
 ### UI Framework (Seismic)
 
@@ -355,9 +355,9 @@ angular.module('employee-portal');
 
 **[Back to top](#table-of-contents)**
 
-## Service Portal Components
+## AngularJS Components
 
-Use components to construct independent and reusable bits of code. Components can be registered with the `.component()` helper method. Why use components?
+In Service Portal, use components to construct independent and reusable bits of code. Components can be registered with the `.component()` helper method. Why use components?
 
 - Simple configuration
 - Promotes modular code
