@@ -7,17 +7,21 @@ A modern and opinionated style guide designed for teams working with ServiceNow.
 ### General Principles
 
 - [Single Responsibility](#single-responsibility)
-- [Don't Repeat Yourself](#dont-repeat-yourself)
+- [Don't Repeat Yourself (DRY)](#dont-repeat-yourself-dry)
 - [Pure Functions](#pure-functions)
 - [Small Functions](#small-functions)
-- [Dead Code](#dead-code)
-- [God Object](#god-object)
+- [Function Declarations](#function-declarations)
+
+### Design Patterns and Anti-Patterns
+
+- [Revealing Module Pattern](#revealing-module-pattern)
+- [God Object (Anti-Pattern)](#god-object-anti-pattern)
+- [Dead Code (Anti-Pattern)](#dead-code-anti-pattern)
 
 ### AngularJS Best Practices
 
 - [$onInit](#oninit)
 - [controllerAs Syntax](#controlleras-syntax)
-- [Function Declarations](#function-declarations)
 - [Bindable Members at Top](#bindable-members-at-top)
 - [One-time Binding](#one-time-binding)
 - [Modules](#modules)
@@ -26,7 +30,6 @@ A modern and opinionated style guide designed for teams working with ServiceNow.
 ### Scripting
 
 - [GlideQuery](#glidequery)
-- [Revealing Module Pattern](#revealing-module-pattern)
 
 ### Testing and Quality
 
@@ -54,7 +57,7 @@ Apply the single responsibility principle (SRP) to all functions, scripts, compo
 
 **[Back to top](#table-of-contents)**
 
-## Don't Repeat Yourself
+## Don't Repeat Yourself (DRY)
 
 The [Don't Repeat Yourself (DRY)](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) principle aims to reduce repetition of code which is likely to change, replacing it with abstractions that are less likely to change, or using data normalization which avoids redundancy in the first place.
 
@@ -95,6 +98,113 @@ Write small functions. Do refactor large functions to smaller ones. Why?
 - Easy to maintain
 - Promotes code reuse
 - Easy to test
+
+**[Back to top](#table-of-contents)**
+
+## Function Declarations
+
+As a general rule, use function declarations over function expressions. Why?
+
+- Creates more readable code
+- Keeps bindable members at the top
+- Hides implementation details
+- No concerns using a function before it is defined
+
+```javascript
+api.controller = function (coreService) {
+  var c = this;
+  c.formatDate = formatDate;
+
+  function formatDate(date) {
+    return coreService.formatDate(date);
+  }
+};
+```
+
+Avoid using function expressions with `$scope` in your client controller.
+
+```javascript
+api.controller = function ($scope, coreService) {
+  var c = this;
+
+  $scope.formatDate = function (date) {
+    return coreService.formatDate(date);
+  };
+};
+```
+
+**[Back to top](#table-of-contents)**
+
+## Revealing Module Pattern
+
+The Revealing Module Pattern in JavaScript is a design pattern that encapsulates private variables and methods within a module, exposing only desired methods and properties. With this pattern, only a public API is returned, keeping everything else within the closure private. Use this pattern in your scripts. Why?
+
+- Creates encapsulation
+- Improves code clarity & readability
+- Enhances code organization
+- Improves maintainability
+
+```javascript
+var AppCenterUtils = (function () {
+  function addUser() {
+    /* */
+  }
+
+  function doTransform() {
+    /* */
+  }
+
+  function getApps() {
+    /* */
+  }
+
+  return {
+    addUser: addUser,
+    getApps: getApps
+  };
+})();
+```
+
+In this script include, the `addUser` & `getApps` methods are exposed and made public, providing a clear and controlled API. The `doTransform` method, however, is kept private within the module, demonstrating the encapsulation this pattern provides.
+
+**[Back to top](#table-of-contents)**
+
+## God Object (Anti-Pattern)
+
+The [God Object](https://en.wikipedia.org/wiki/God_object) is an anti-pattern in object-oriented programming. It refers to an object that knows too much or does too much. The God Object is usually a class or module that has grown to such proportions that it becomes unmanageable and difficult to maintain.
+
+> A God object is an object that controls too many other objects in the system and has grown beyond all logic to become The Class That Does Everything. - Robert C. Martin
+
+In essence, a God Object is a violation of the [Single Responsibility Principle (SRP)](#single-responsibility). It's an object that has taken on responsibilities that should be delegated to other, more specialized objects.
+
+Avoid creating God Objects in your code. Why and what is the cost?
+
+- Tight coupling
+- Difficult to maintain
+- Decreased code readability
+- Harder to test
+
+When you find a God Object in your code, consider refactoring it into smaller, more focused units of abstraction. This process is often referred to as "breaking down a God Object".
+
+**[Back to top](#table-of-contents)**
+
+## Dead Code (Anti-Pattern)
+
+[Dead code](https://en.wikipedia.org/wiki/Dead_code) is code that is no longer used by your application. It can come in different forms, but most apparent in commented-out code. Leaving dead code in your codebase can have a number of negative consequences, including:
+
+- Decreased code readability
+- Hurts maintainability
+- Makes it harder to find & fix bugs
+- Negatively impacting performance
+
+First & foremost, all of your code should be stored in version control. So instead of commenting out code for potential future use, simply remove it. Look to the version history for reference.
+
+To help eliminate unused variables, functions, and function parameters, add the [no-unused-vars](https://eslint.org/docs/latest/rules/no-unused-vars) rule to your ESLint configuration file.
+
+```yml
+rules:
+  no-unused-vars: error
+```
 
 **[Back to top](#table-of-contents)**
 
@@ -143,40 +253,6 @@ api.controller = function ($scope) {
 ```
 
 Using `$scope` is fine when publishing and subscribing to events such as: `$emit`, `$broadcast`, or `$on`.
-
-**[Back to top](#table-of-contents)**
-
-## Function Declarations
-
-As a general rule, use function declarations over function expressions. Why?
-
-- Creates more readable code
-- Keeps bindable members at the top
-- Hides implementation details
-- No concerns using a function before it is defined
-
-```javascript
-api.controller = function (coreService) {
-  var c = this;
-  c.formatDate = formatDate;
-
-  function formatDate(date) {
-    return coreService.formatDate(date);
-  }
-};
-```
-
-Avoid using function expressions with `$scope` in your client controller.
-
-```javascript
-api.controller = function ($scope, coreService) {
-  var c = this;
-
-  $scope.formatDate = function (date) {
-    return coreService.formatDate(date);
-  };
-};
-```
 
 **[Back to top](#table-of-contents)**
 
@@ -281,40 +357,6 @@ This code was crafted using a UI script.
 
 **[Back to top](#table-of-contents)**
 
-## Revealing Module Pattern
-
-The Revealing Module Pattern in JavaScript is a design pattern that encapsulates private variables and methods within a module, exposing only desired methods and properties. With this pattern, only a public API is returned, keeping everything else within the closure private. Use this pattern in your scripts. Why?
-
-- Creates encapsulation
-- Improves code clarity & readability
-- Enhances code organization
-- Improves maintainability
-
-```javascript
-var AppCenterUtils = (function () {
-  function addUser() {
-    /* */
-  }
-
-  function doTransform() {
-    /* */
-  }
-
-  function getApps() {
-    /* */
-  }
-
-  return {
-    addUser: addUser,
-    getApps: getApps
-  };
-})();
-```
-
-In this script include, the `addUser` & `getApps` methods are exposed and made public, providing a clear and controlled API. The `doTransform` method, however, is kept private within the module, demonstrating the encapsulation this pattern provides.
-
-**[Back to top](#table-of-contents)**
-
 ## GlideQuery
 
 Use [GlideQuery](https://docs.servicenow.com/bundle/tokyo-application-development/page/app-store/dev_portal/API_reference/GlideQuery/concept/GlideQueryGlobalAPI.html) as an interface to the Now platform. `GlideQuery` offers a modern, functional, and safer alternative to `GlideRecord`. Why?
@@ -410,44 +452,5 @@ semi: true
 tabWidth: 2
 trailingComma: 'es5'
 ```
-
-**[Back to top](#table-of-contents)**
-
-## Dead Code
-
-[Dead code](https://en.wikipedia.org/wiki/Dead_code) is code that is no longer used by your application. It can come in different forms, but most apparent in commented-out code. Leaving dead code in your codebase can have a number of negative consequences, including:
-
-- Decreased code readability
-- Hurts maintainability
-- Makes it harder to find & fix bugs
-- Negatively impacting performance
-
-First & foremost, all of your code should be stored in version control. So instead of commenting out code for potential future use, simply remove it. Look to the version history for reference.
-
-To help eliminate unused variables, functions, and function parameters, add the [no-unused-vars](https://eslint.org/docs/latest/rules/no-unused-vars) rule to your ESLint configuration file.
-
-```yml
-rules:
-  no-unused-vars: error
-```
-
-**[Back to top](#table-of-contents)**
-
-## God Object
-
-The [God Object](https://en.wikipedia.org/wiki/God_object) is an anti-pattern in object-oriented programming. It refers to an object that knows too much or does too much. The God Object is usually a class or module that has grown to such proportions that it becomes unmanageable and difficult to maintain.
-
-> A God object is an object that controls too many other objects in the system and has grown beyond all logic to become The Class That Does Everything. - Robert C. Martin
-
-In essence, a God Object is a violation of the [Single Responsibility Principle (SRP)](#single-responsibility). It's an object that has taken on responsibilities that should be delegated to other, more specialized objects.
-
-Avoid creating God Objects in your code. Why and what is the cost?
-
-- Tight coupling
-- Difficult to maintain
-- Decreased code readability
-- Harder to test
-
-When you find a God Object in your code, consider refactoring it into smaller, more focused units of abstraction. This process is often referred to as "breaking down a God Object".
 
 **[Back to top](#table-of-contents)**
