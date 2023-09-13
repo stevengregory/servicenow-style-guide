@@ -9,13 +9,13 @@ A modern and opinionated style guide designed for ServiceNow development. This g
 - [Single Responsibility](#single-responsibility)
 - [Don't Repeat Yourself (DRY)](#dont-repeat-yourself-dry)
 
-### Design Patterns and Anti-Patterns
+### Design Patterns & Anti-Patterns
 
 - [Revealing Module Pattern](#revealing-module-pattern)
 - [God Object (Anti-Pattern)](#god-object-anti-pattern)
 - [Dead Code (Anti-Pattern)](#dead-code-anti-pattern)
 
-### AngularJS Best Practices
+### Service Portal
 
 - [$onInit](#oninit)
 - [controllerAs Syntax](#controlleras-syntax)
@@ -31,7 +31,7 @@ A modern and opinionated style guide designed for ServiceNow development. This g
 - [Function Declarations](#function-declarations)
 - [GlideQuery](#glidequery)
 
-### Testing and Quality
+### Testing & Quality
 
 - [Unit Testing](#unit-testing)
 - [Linting](#linting)
