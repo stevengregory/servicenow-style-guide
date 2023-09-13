@@ -31,9 +31,9 @@ A modern and opinionated style guide designed for ServiceNow development teams. 
 - [Modules](#modules)
 - [Service Portal Components](#service-portal-components)
 
-### UI Framework
+### UI Framework (Seismic)
 
-- [Seismic Component File Structure](#seismic-component-file-structure)
+- [Component File Structure](#component-file-structure)
 
 ### Testing & Quality
 
@@ -386,7 +386,7 @@ This code was crafted using a UI script.
 
 **[Back to top](#table-of-contents)**
 
-## Seismic Component File Structure
+## Component File Structure
 
 In the [UI Framework](https://developer.servicenow.com/dev.do#!/reference/next-experience/vancouver/ui-framework/getting-started) (Seismic), as the complexity of a component increases, it's a good practice to start abstraction. A good start is moving your view and component logic to stand-alone files. Why?
 
