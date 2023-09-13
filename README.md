@@ -388,7 +388,7 @@ This code was crafted using a UI script.
 
 ## Seismic Component File Structure
 
-In the [UI Framework](https://developer.servicenow.com/dev.do#!/reference/next-experience/vancouver/ui-framework/getting-started) (Seismic), as the complexity of component increases, it's a good practice to start abstraction. A good start is moving your view and component logic to stand-alone files. Why?
+In the [UI Framework](https://developer.servicenow.com/dev.do#!/reference/next-experience/vancouver/ui-framework/getting-started) (Seismic), as the complexity of a component increases, it's a good practice to start abstraction. A good start is moving your view and component logic to stand-alone files. Why?
 
 - Creates a separation of concerns
 - Improves maintainability
@@ -479,3 +479,5 @@ semi: true
 tabWidth: 2
 trailingComma: 'es5'
 ```
+
+**[Back to top](#table-of-contents)**
