@@ -1,6 +1,6 @@
 # ServiceNow: Style Guide
 
-A modern and opinionated style guide designed for teams working with ServiceNow. This guide focuses on promoting clean, efficient, and maintainable code that adheres to best practices.
+A modern and opinionated style guide designed for ServiceNow development. This guide focuses on promoting clean, efficient, and maintainable code that adheres to best practices.
 
 ## Table of Contents
 
