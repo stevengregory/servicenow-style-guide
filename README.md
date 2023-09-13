@@ -15,6 +15,13 @@ A modern and opinionated style guide designed for ServiceNow development teams. 
 - [God Object (Anti-Pattern)](#god-object-anti-pattern)
 - [Dead Code (Anti-Pattern)](#dead-code-anti-pattern)
 
+### Scripting
+
+- [Pure Functions](#pure-functions)
+- [Small Functions](#small-functions)
+- [Function Declarations](#function-declarations)
+- [GlideQuery](#glidequery)
+
 ### Service Portal
 
 - [$onInit](#oninit)
@@ -22,14 +29,11 @@ A modern and opinionated style guide designed for ServiceNow development teams. 
 - [Bindable Members at Top](#bindable-members-at-top)
 - [One-time Binding](#one-time-binding)
 - [Modules](#modules)
-- [Components](#components)
+- [Service Portal Components](#service-portal-components)
 
-### Scripting
+### UI Framework
 
-- [Pure Functions](#pure-functions)
-- [Small Functions](#small-functions)
-- [Function Declarations](#function-declarations)
-- [GlideQuery](#glidequery)
+- [Seismic Component File Structure](#seismic-component-file-structure)
 
 ### Testing & Quality
 
@@ -144,6 +148,91 @@ To help eliminate unused variables, functions, and function parameters, add the 
 ```yml
 rules:
   no-unused-vars: error
+```
+
+**[Back to top](#table-of-contents)**
+
+## Pure Functions
+
+Write [pure functions](https://en.wikipedia.org/wiki/Pure_function) when possible. These functions, when given the same input, will always return the same output. They produce no side effects. Pure functions are completely independent of outside state. Why use these?
+
+- Easy to understand
+- Easy to maintain
+- Reduces bugs
+- More testable
+
+```javascript
+const double = (x) => x * 2;
+```
+
+**[Back to top](#table-of-contents)**
+
+## Small Functions
+
+Write small functions. Do refactor large functions to smaller ones. Why?
+
+- Creates more readable code
+- Easy to maintain
+- Promotes code reuse
+- Easy to test
+
+**[Back to top](#table-of-contents)**
+
+## Function Declarations
+
+As a general rule, use function declarations over function expressions. Why?
+
+- Creates more readable code
+- Keeps bindable members at the top
+- Hides implementation details
+- No concerns using a function before it is defined
+
+```javascript
+api.controller = function (coreService) {
+  var c = this;
+  c.formatDate = formatDate;
+
+  function formatDate(date) {
+    return coreService.formatDate(date);
+  }
+};
+```
+
+Avoid using function expressions with `$scope` in your client controller.
+
+```javascript
+api.controller = function ($scope, coreService) {
+  var c = this;
+
+  $scope.formatDate = function (date) {
+    return coreService.formatDate(date);
+  };
+};
+```
+
+**[Back to top](#table-of-contents)**
+
+## GlideQuery
+
+Use [GlideQuery](https://docs.servicenow.com/bundle/tokyo-application-development/page/app-store/dev_portal/API_reference/GlideQuery/concept/GlideQueryGlobalAPI.html) as an interface to the Now platform. `GlideQuery` offers a modern, functional, and safer alternative to `GlideRecord`. Why?
+
+- Creates readable & expressive code
+- Simplifies queries
+- Easy to catch bugs
+
+```javascript
+function userExists(userID) {
+  return new GlideQuery('sys_user')
+    .where('user_name', userID)
+    .selectOne('user_name')
+    .isPresent();
+}
+```
+
+When used within a scoped app, it must be prefixed with the global scope.
+
+```javascript
+new global.GlideQuery('sys_user');
 ```
 
 **[Back to top](#table-of-contents)**
@@ -266,7 +355,7 @@ angular.module('employee-portal');
 
 **[Back to top](#table-of-contents)**
 
-## Components
+## Service Portal Components
 
 Use components to construct independent and reusable bits of code. Components can be registered with the `.component()` helper method. Why use components?
 
@@ -297,90 +386,26 @@ This code was crafted using a UI script.
 
 **[Back to top](#table-of-contents)**
 
-## Pure Functions
+## Seismic Component File Structure
 
-Write [pure functions](https://en.wikipedia.org/wiki/Pure_function) when possible. These functions, when given the same input, will always return the same output. They produce no side effects. Pure functions are completely independent of outside state. Why use these?
+In the [UI Framework](https://developer.servicenow.com/dev.do#!/reference/next-experience/vancouver/ui-framework/getting-started) (Seismic), as the complexity of component increases, it's a good practice to start abstraction. A good start is moving your view and component logic to stand-alone files. Why?
 
-- Easy to understand
-- Easy to maintain
-- Reduces bugs
-- More testable
+- Creates a separation of concerns
+- Improves maintainability
+- Increases code readability
 
-```javascript
-const double = (x) => x * 2;
+Here is an example component directory structure.
+
+```text
+src/
+├── example-component/
+│   ├── __tests__/
+│   ├── component.js
+│   ├── index.js
+│   ├── styles.scss
+│   └── view.js
+└── index.js
 ```
-
-**[Back to top](#table-of-contents)**
-
-## Small Functions
-
-Write small functions. Do refactor large functions to smaller ones. Why?
-
-- Creates more readable code
-- Easy to maintain
-- Promotes code reuse
-- Easy to test
-
-**[Back to top](#table-of-contents)**
-
-## Function Declarations
-
-As a general rule, use function declarations over function expressions. Why?
-
-- Creates more readable code
-- Keeps bindable members at the top
-- Hides implementation details
-- No concerns using a function before it is defined
-
-```javascript
-api.controller = function (coreService) {
-  var c = this;
-  c.formatDate = formatDate;
-
-  function formatDate(date) {
-    return coreService.formatDate(date);
-  }
-};
-```
-
-Avoid using function expressions with `$scope` in your client controller.
-
-```javascript
-api.controller = function ($scope, coreService) {
-  var c = this;
-
-  $scope.formatDate = function (date) {
-    return coreService.formatDate(date);
-  };
-};
-```
-
-**[Back to top](#table-of-contents)**
-
-## GlideQuery
-
-Use [GlideQuery](https://docs.servicenow.com/bundle/tokyo-application-development/page/app-store/dev_portal/API_reference/GlideQuery/concept/GlideQueryGlobalAPI.html) as an interface to the Now platform. `GlideQuery` offers a modern, functional, and safer alternative to `GlideRecord`. Why?
-
-- Creates readable & expressive code
-- Simplifies queries
-- Easy to catch bugs
-
-```javascript
-function userExists(userID) {
-  return new GlideQuery('sys_user')
-    .where('user_name', userID)
-    .selectOne('user_name')
-    .isPresent();
-}
-```
-
-When used within a scoped app, it must be prefixed with the global scope.
-
-```javascript
-new global.GlideQuery('sys_user');
-```
-
-**[Back to top](#table-of-contents)**
 
 ## Unit Testing
 
@@ -452,5 +477,3 @@ semi: true
 tabWidth: 2
 trailingComma: 'es5'
 ```
-
-**[Back to top](#table-of-contents)**
