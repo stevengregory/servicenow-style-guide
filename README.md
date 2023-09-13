@@ -8,9 +8,6 @@ A modern and opinionated style guide designed for teams working with ServiceNow.
 
 - [Single Responsibility](#single-responsibility)
 - [Don't Repeat Yourself (DRY)](#dont-repeat-yourself-dry)
-- [Pure Functions](#pure-functions)
-- [Small Functions](#small-functions)
-- [Function Declarations](#function-declarations)
 
 ### Design Patterns and Anti-Patterns
 
@@ -29,6 +26,9 @@ A modern and opinionated style guide designed for teams working with ServiceNow.
 
 ### Scripting
 
+- [Pure Functions](#pure-functions)
+- [Small Functions](#small-functions)
+- [Function Declarations](#function-declarations)
 - [GlideQuery](#glidequery)
 
 ### Testing and Quality
@@ -72,66 +72,6 @@ Use the DRY principle broadly when developing on the platform. Why follow it?
 - More reusable
 - More testable
 - Less error-prone
-
-**[Back to top](#table-of-contents)**
-
-## Pure Functions
-
-Write [pure functions](https://en.wikipedia.org/wiki/Pure_function) when possible. These functions, when given the same input, will always return the same output. They produce no side effects. Pure functions are completely independent of outside state. Why use these?
-
-- Easy to understand
-- Easy to maintain
-- Reduces bugs
-- More testable
-
-```javascript
-const double = (x) => x * 2;
-```
-
-**[Back to top](#table-of-contents)**
-
-## Small Functions
-
-Write small functions. Do refactor large functions to smaller ones. Why?
-
-- Creates more readable code
-- Easy to maintain
-- Promotes code reuse
-- Easy to test
-
-**[Back to top](#table-of-contents)**
-
-## Function Declarations
-
-As a general rule, use function declarations over function expressions. Why?
-
-- Creates more readable code
-- Keeps bindable members at the top
-- Hides implementation details
-- No concerns using a function before it is defined
-
-```javascript
-api.controller = function (coreService) {
-  var c = this;
-  c.formatDate = formatDate;
-
-  function formatDate(date) {
-    return coreService.formatDate(date);
-  }
-};
-```
-
-Avoid using function expressions with `$scope` in your client controller.
-
-```javascript
-api.controller = function ($scope, coreService) {
-  var c = this;
-
-  $scope.formatDate = function (date) {
-    return coreService.formatDate(date);
-  };
-};
-```
 
 **[Back to top](#table-of-contents)**
 
@@ -354,6 +294,66 @@ Use components to construct independent and reusable bits of code. Components ca
 ```
 
 This code was crafted using a UI script.
+
+**[Back to top](#table-of-contents)**
+
+## Pure Functions
+
+Write [pure functions](https://en.wikipedia.org/wiki/Pure_function) when possible. These functions, when given the same input, will always return the same output. They produce no side effects. Pure functions are completely independent of outside state. Why use these?
+
+- Easy to understand
+- Easy to maintain
+- Reduces bugs
+- More testable
+
+```javascript
+const double = (x) => x * 2;
+```
+
+**[Back to top](#table-of-contents)**
+
+## Small Functions
+
+Write small functions. Do refactor large functions to smaller ones. Why?
+
+- Creates more readable code
+- Easy to maintain
+- Promotes code reuse
+- Easy to test
+
+**[Back to top](#table-of-contents)**
+
+## Function Declarations
+
+As a general rule, use function declarations over function expressions. Why?
+
+- Creates more readable code
+- Keeps bindable members at the top
+- Hides implementation details
+- No concerns using a function before it is defined
+
+```javascript
+api.controller = function (coreService) {
+  var c = this;
+  c.formatDate = formatDate;
+
+  function formatDate(date) {
+    return coreService.formatDate(date);
+  }
+};
+```
+
+Avoid using function expressions with `$scope` in your client controller.
+
+```javascript
+api.controller = function ($scope, coreService) {
+  var c = this;
+
+  $scope.formatDate = function (date) {
+    return coreService.formatDate(date);
+  };
+};
+```
 
 **[Back to top](#table-of-contents)**
 
